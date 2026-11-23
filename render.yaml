@@ -1,12 +1,5 @@
 version: "1"
 services:
-  - type: postgresql
-    name: odoo-postgres
-    plan: free
-    region: oregon
-    databaseName: odoo20
-    user: veer
-    postgresMajorVersion: "16"
   - type: web
     name: odoo-web
     env: docker
@@ -18,28 +11,27 @@ services:
       - key: ADMIN_PASSWORD
         value: admin
       - key: DB_HOST
-        fromService:
-          type: postgresql
+        fromDatabase:
           name: odoo-postgres
           property: host
       - key: DB_PORT
         value: "5432"
       - key: DB_USER
-        fromService:
-          type: postgresql
+        fromDatabase:
           name: odoo-postgres
           property: user
       - key: DB_PASSWORD
-        fromService:
-          type: postgresql
+        fromDatabase:
           name: odoo-postgres
           property: password
       - key: DB_NAME
-        fromService:
-          type: postgresql
-          name: odoo-postgres
-          property: databaseName
-      - key: HTTP_PORT
-        value: "8069"
+        value: odoo20
     buildCommand: ""
     startCommand: odoo-bin -d odoo20 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm --without-demo=all
+databases:
+  - name: odoo-postgres
+    databaseName: odoo20
+    user: veer
+    plan: free
+    region: oregon
+    majorVersion: 16
