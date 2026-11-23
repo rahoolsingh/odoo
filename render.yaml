@@ -19,7 +19,6 @@ services:
         value: admin
       - key: DB_NAME
         value: odoo20
-    startCommand: odoo-bin -d odoo20 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm --without-demo=all
 
 databases:
   - name: odoo-postgres
