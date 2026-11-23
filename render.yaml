@@ -19,11 +19,5 @@ services:
         value: 1dS882aCbYDpXWzdbjqoSKFPWxecN2rR
       - key: DB_NAME
         value: odoo20_ukvy
-
-databases:
-  - name: odoo-postgres
-    databaseName: odoo20_ukvy
-    user: veer
-    plan: free
-    region: oregon
-    postgresMajorVersion: "16"
+      - key: PORT
+        value: "10000"
