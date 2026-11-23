@@ -1,0 +1,36 @@
+[project]
+name = "odoo"
+version = "20.0"
+description = "Odoo 20.0 CRM & HR instance (base, crm, hr)"
+
+[environment]
+name = "production"
+url = "http://localhost:8069"
+
+[services]
+  - type = "postgresql"
+    host = "localhost"
+    port = 5432
+    user = "veer"
+    password = "admin"
+    database = "odoo20"
+    name = "postgres"
+
+  - type = "web"
+    host = "localhost"
+    port = 80
+    path = "/web"
+    env_variables = [
+      "ADMIN_PASSWORD=admin",
+      "DB_HOST=localhost",
+      "DB_PORT=5432",
+      "DB_USER=veer",
+      "DB_PASSWORD=admin",
+      "DB_NAME=odoo20",
+    ]
+
+[servers]
+  default = "production"
+  url = "http://localhost:8069/web"
+  environments = ["production"]
+  # optional: add autoscaling rules here if desired
