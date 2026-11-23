@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     build-essential \
     git \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /odoo
@@ -27,5 +28,7 @@ COPY . /odoo
 
 EXPOSE 8069
 
-RUN chmod +x /odoo/odoo-bin
-CMD /odoo/odoo-bin --config=/odoo/odoo.conf -d=$DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm
+COPY docker-entrypoint.sh /odoo/docker-entrypoint.sh
+RUN chmod +x /odoo/docker-entrypoint.sh
+
+ENTRYPOINT ["/odoo/docker-entrypoint.sh"]
