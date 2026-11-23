@@ -27,4 +27,5 @@ COPY . /odoo
 
 EXPOSE 8069
 
-CMD odoo-bin --config=/odoo/odoo.conf -d=$DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm
+RUN chmod +x /odoo/odoo-bin
+CMD /odoo/odoo-bin --config=/odoo/odoo.conf -d=$DB_NAME --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm

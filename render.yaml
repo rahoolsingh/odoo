@@ -10,19 +10,19 @@ services:
       - key: ADMIN_PASSWORD
         value: admin
       - key: DB_HOST
-        value: odoo-postgres
+        value: dpg-dc21t8jl550s73fslqd0-a
       - key: DB_PORT
         value: "5432"
       - key: DB_USER
         value: veer
       - key: DB_PASSWORD
-        value: admin
+        value: 1dS882aCbYDpXWzdbjqoSKFPWxecN2rR
       - key: DB_NAME
-        value: odoo20
+        value: odoo20_ukvy
 
 databases:
   - name: odoo-postgres
-    databaseName: odoo20
+    databaseName: odoo20_ukvy
     user: veer
     plan: free
     region: oregon
