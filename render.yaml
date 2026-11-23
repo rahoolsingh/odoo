@@ -1,4 +1,3 @@
-version: "1"
 services:
   - type: web
     name: odoo-web
@@ -11,27 +10,21 @@ services:
       - key: ADMIN_PASSWORD
         value: admin
       - key: DB_HOST
-        fromDatabase:
-          name: odoo-postgres
-          property: host
+        value: odoo-postgres
       - key: DB_PORT
         value: "5432"
       - key: DB_USER
-        fromDatabase:
-          name: odoo-postgres
-          property: user
+        value: veer
       - key: DB_PASSWORD
-        fromDatabase:
-          name: odoo-postgres
-          property: password
+        value: admin
       - key: DB_NAME
         value: odoo20
-    buildCommand: ""
     startCommand: odoo-bin -d odoo20 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD --load=base,hr,crm --without-demo=all
+
 databases:
   - name: odoo-postgres
     databaseName: odoo20
     user: veer
     plan: free
     region: oregon
-    majorVersion: 16
+    postgresMajorVersion: "16"
